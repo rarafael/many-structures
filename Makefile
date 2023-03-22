@@ -1,12 +1,16 @@
 CC=cc
 CFLAGS=-Wall -Wextra -std=c99 -Wpedantic -O3 -ggdb
+BINDIR=bin
 
-all: bin/single-list bin/double-list
+all: $(BINDIR) $(BINDIR)/single-list $(BINDIR)/double-list
 
-bin/single-list: src/single-list.c
+$(BINDIR):
+	mkdir bin
+
+$(BINDIR)/single-list: src/single-list.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-bin/double-list: src/double-list.c
+$(BINDIR)/double-list: src/double-list.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:

@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 struct Node *start_list(int data);
-void destroy_list(struct Node *head);
 struct Node *append_node(struct Node *head, int data);
 void remove_node(struct Node *head, struct Node *target);
+void destroy_list(struct Node *head);
 void print_list(struct Node *head);
 
 struct Node {
@@ -95,7 +95,6 @@ int main(void)
     struct Node *header = start_list(1 << 1);
     struct Node *n1 = append_node(header, 1 << 2);
     struct Node *new_head = prepend_node(header, 1 << 3);
-    printf("%p\n", find_by_value(new_head, 1 << 2));
     print_list(new_head);
     print_list(header);
     remove_node(new_head, n1);
