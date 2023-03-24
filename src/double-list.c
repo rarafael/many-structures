@@ -6,6 +6,7 @@ struct Node *append_node(struct NodeList *list, int data);
 struct Node *prepend_node(struct NodeList *list, int data);
 struct Node *after_node(struct Node *after, int data);
 struct Node *before_node(struct Node *before, int data);
+void remove_node(struct Node *removal);
 void destroy_list(struct NodeList *list);
 void print_list(struct NodeList *list);
 
@@ -93,6 +94,16 @@ struct Node *before_node(struct Node *before, int data)
     before->prev = new;
 
     return new;
+}
+
+void remove_node(struct Node *removal)
+{
+    if(removal->prev)
+        removal->prev->next = removal->next;
+    if(removal->next)
+        removal->next->prev = removal->prev;
+    free(removal);
+    return;
 }
 
 void destroy_list(struct NodeList *list)

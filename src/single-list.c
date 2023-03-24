@@ -3,6 +3,7 @@
 
 struct Node *start_list(int data);
 struct Node *append_node(struct Node *head, int data);
+struct Node *prepend_node(struct Node *head, int data);
 void remove_node(struct Node *head, struct Node *target);
 void destroy_list(struct Node *head);
 void print_list(struct Node *head);
