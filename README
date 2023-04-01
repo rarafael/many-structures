@@ -1,4 +1,5 @@
-Some data structures in C.
+# Some data structures in C.
+
 These aren't meant to be the most efficient or minimal in resource usage,
 they just need to work (most of the time) and mostly serve as lessons for
 myself.
