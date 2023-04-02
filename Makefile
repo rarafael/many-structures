@@ -5,7 +5,8 @@ BINDIR=bin
 all: $(BINDIR)\
      $(BINDIR)/single-list\
      $(BINDIR)/double-list\
-     $(BINDIR)/hashmap 
+     $(BINDIR)/hashmap\
+     $(BINDIR)/binary-tree
 
 $(BINDIR):
 	mkdir bin
@@ -19,5 +20,9 @@ $(BINDIR)/double-list: src/double-list.c
 $(BINDIR)/hashmap: src/hashmap.c
 	$(CC) $(CFLAGS) $^ -o $@
 
+$(BINDIR)/binary-tree: src/binary-tree.c
+	$(CC) $(CFLAGS) $^ -o $@
+
 clean:
-	rm bin/*
+	rm $(BINDIR)/*
+	rmdir $(BINDIR)

@@ -13,6 +13,7 @@ struct Hashmap new_hashmap(const char *str, int data);
 void new_entry(const char *str, int data, struct Hashmap *hm);
 int get_data(const char *str, struct Hashmap hm);
 void remove_entry(const char *str, struct Hashmap *hm);
+void print_entries(struct Hashmap hm);
 void destroy_hashmap(struct Hashmap hm);
 
 static inline int get_hash(const char *string)
@@ -98,6 +99,13 @@ int get_data(const char *str, struct Hashmap hm)
     return INT_MAX;
 }
 
+void print_entries(struct Hashmap hm)
+{
+    for(size_t i = 0; i < hm.size; i++) {
+        printf("%6d: %d\n", hm.hash[i], hm.data[i]);
+    }
+}
+
 void destroy_hashmap(struct Hashmap hm)
 {
     free(hm.hash);
@@ -108,11 +116,7 @@ int main(void)
 {
     struct Hashmap hm = new_hashmap("rafael", 1 << 1);
     new_entry("rarafael", 1 << 2, &hm);
-    printf("%d\n", get_data("rafael", hm));
-    printf("%d\n", get_data("rarafael", hm));
-    remove_entry("rarafael", &hm);
-    printf("%d\n", get_data("rafael", hm));
-    printf("%d\n", get_data("rarafael", hm));
+    print_entries(hm);
     destroy_hashmap(hm);
     return EXIT_SUCCESS;
 }
