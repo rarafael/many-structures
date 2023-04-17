@@ -3,6 +3,7 @@
 
 struct Tree *new_tree(int data);
 void append_tree(struct Tree *tree, int data, int side);
+void attach_tree(struct Tree *root, struct Tree *attachee, int side);
 void remove_tree(struct Tree *root, struct Tree *removal);
 void print_tree(struct Tree *root);
 void delete_tree(struct Tree *tree);
@@ -29,10 +30,32 @@ struct Tree *new_tree(int data)
 
 void append_tree(struct Tree *tree, int data, int side)
 {
-    if(side)
-        tree->left = new_tree(data);
-    else
-        tree->right = new_tree(data);
+    if(side) {
+        if(!tree->left)
+            tree->left = new_tree(data);
+        else
+            append_tree(tree->left, data, side);
+    } else {
+        if(!tree->right)
+            tree->right = new_tree(data);
+        else
+            append_tree(tree->right, data, side);
+    }
+}
+
+void attach_tree(struct Tree *root, struct Tree *attachee, int side)
+{
+    if(side) {
+        if(!root->left)
+            root->left = attachee;
+        else
+            attach_tree(root->left, attachee, side);
+    } else {
+        if(!root->right)
+            root->right = attachee;
+        else
+            attach_tree(root->right, attachee, side);
+    }
 }
 
 void remove_tree(struct Tree *root, struct Tree *removal)
@@ -89,10 +112,10 @@ void print_tree(struct Tree *root)
 
 void delete_tree(struct Tree *tree)
 {
-    if(!tree)
-        return;
-    delete_tree(tree->left);
-    delete_tree(tree->right);
+    if(tree->right)
+        delete_tree(tree->right);
+    if(tree->left)
+        delete_tree(tree->left);
     free(tree);
 }
 
