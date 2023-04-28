@@ -21,7 +21,7 @@ struct NodeList {
     struct Node *tail;
 };
 
-static inline struct Node *new_node(int data)
+static struct Node *new_node(int data)
 {
     struct Node *new = calloc(1, sizeof(struct Node));
 

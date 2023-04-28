@@ -7,7 +7,8 @@ all: $(BINDIR)\
      $(BINDIR)/double-list\
      $(BINDIR)/hashmap\
      $(BINDIR)/binary-tree\
-     $(BINDIR)/sorted-binary-tree
+     $(BINDIR)/sorted-binary-tree\
+     $(BINDIR)/stack
 
 $(BINDIR):
 	mkdir bin
@@ -25,6 +26,9 @@ $(BINDIR)/binary-tree: src/binary-tree.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(BINDIR)/sorted-binary-tree: src/sorted-binary-tree.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(BINDIR)/stack: src/stack.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
