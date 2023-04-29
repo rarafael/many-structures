@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -26,9 +27,13 @@ void push(int value, struct Stack *stack)
 
 int pop(struct Stack *stack)
 {
+    assert(stack);
     int ret = stack->value[stack->len - 1];
     stack->len -= 1;
-    stack->value = realloc(stack->value, stack->len);
+    if(!stack->len)
+        free_stack(stack);
+    else
+        stack->value = realloc(stack->value, stack->len);
     return ret;
 }
 
@@ -36,6 +41,7 @@ void free_stack(struct Stack *stack)
 {
     free(stack->value);
     stack->len = 0;
+    stack->value = NULL;
 }
 
 void print(struct Stack stack)
