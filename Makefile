@@ -8,28 +8,32 @@ all: $(BINDIR)\
      $(BINDIR)/hashmap\
      $(BINDIR)/binary-tree\
      $(BINDIR)/sorted-binary-tree\
-     $(BINDIR)/stack
+     $(BINDIR)/stack\
+     $(BINDIR)/set
 
 $(BINDIR):
 	mkdir bin
 
 $(BINDIR)/single-list: src/single-list.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 $(BINDIR)/double-list: src/double-list.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 $(BINDIR)/hashmap: src/hashmap.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 $(BINDIR)/binary-tree: src/binary-tree.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 $(BINDIR)/sorted-binary-tree: src/sorted-binary-tree.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 $(BINDIR)/stack: src/stack.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $< -o $@
+
+$(BINDIR)/set: src/set.c
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
 	rm $(BINDIR)/*

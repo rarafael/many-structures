@@ -7,6 +7,12 @@ struct Stack {
     size_t len;
 };
 
+void free_stack(struct Stack *stack);
+struct Stack new_stack(int value);
+void push(int value, struct Stack *stack);
+int pop(struct Stack *stack);
+void print(struct Stack stack);
+
 struct Stack new_stack(int value)
 {
     struct Stack ret = {0};

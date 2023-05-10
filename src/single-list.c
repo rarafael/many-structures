@@ -86,7 +86,7 @@ void print_list(struct Node *head)
     struct Node *tmp = head;
 
     do {
-        printf("%d\n", tmp->data);
+        printf("list item: %d\n", tmp->data);
         tmp = tmp->next;
     } while(tmp);
 }
